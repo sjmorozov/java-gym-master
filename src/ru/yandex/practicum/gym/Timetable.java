@@ -40,7 +40,7 @@ public class Timetable {
         return listOfTrainingsTodayOnTime;
     }
 
-    public List<CounterOfTrainings> getCountByCoaches () {
+    public List<CounterOfTrainings> getCountByCoaches() {
         HashMap<Coach, Integer> listOfCoachesWithCounter = new HashMap<>();
         for (Map.Entry<DayOfWeek, TreeMap<TimeOfDay, List<TrainingSession>>> setOfSessionsPerDay : this.timetable.entrySet()) {
             TreeMap<TimeOfDay, List<TrainingSession>> mapOfTrainingsToday = setOfSessionsPerDay.getValue();
