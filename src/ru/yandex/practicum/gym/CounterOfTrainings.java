@@ -12,7 +12,7 @@ public class CounterOfTrainings implements Comparable<CounterOfTrainings> {
 
     @Override
     public int compareTo(CounterOfTrainings c) {
-        return c.getCounter() - this.getCounter();
+        return this.getCounter() - c.getCounter();
     }
 
     public Coach getCoach() {

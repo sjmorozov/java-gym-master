@@ -51,13 +51,13 @@ public class Timetable {
                     int count = listOfCoachesWithCounter.getOrDefault(currentCoach, 0);
                     listOfCoachesWithCounter.put(currentCoach, count + 1);
                 }
-                }
             }
+        }
         List<CounterOfTrainings> countersOfTrainings = new ArrayList<>();
         for (Map.Entry<Coach, Integer> entry : listOfCoachesWithCounter.entrySet()) {
             countersOfTrainings.add(new CounterOfTrainings(entry.getKey(), entry.getValue()));
         }
-        Collections.sort(countersOfTrainings);
+        Collections.sort(countersOfTrainings, Collections.reverseOrder());
         return countersOfTrainings;
     }
 }

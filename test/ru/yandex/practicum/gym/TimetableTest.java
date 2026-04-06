@@ -27,6 +27,31 @@ public class TimetableTest {
     }
 
     @Test
+    void testGetTrainingSessionsForDayIfSeveralSessionsStartAtSameTime() {
+        Timetable timetable = new Timetable();
+
+        Coach coach = new Coach("Васильев", "Николай", "Сергеевич");
+
+        Group groupAdult = new Group("Акробатика для взрослых", Age.ADULT, 90);
+        TrainingSession thursdayAdultTrainingSession = new TrainingSession(groupAdult, coach,
+                DayOfWeek.THURSDAY, new TimeOfDay(20, 0));
+
+        timetable.addNewTrainingSession(thursdayAdultTrainingSession);
+
+        Group groupChild = new Group("Акробатика для детей", Age.CHILD, 60);
+        TrainingSession thursdayChildTrainingSession = new TrainingSession(groupChild, coach,
+                DayOfWeek.THURSDAY, new TimeOfDay(20, 0));
+
+        timetable.addNewTrainingSession(thursdayChildTrainingSession);
+
+        // Проверить, что за четверг вернулось два занятия в одно время
+        List<TrainingSession> thursdaySessions = timetable.getTrainingSessionsForDay(DayOfWeek.THURSDAY);
+        assertEquals(2, thursdaySessions.size());
+        assertTrue(thursdaySessions.contains(thursdayAdultTrainingSession));
+        assertTrue(thursdaySessions.contains(thursdayChildTrainingSession));
+    }
+
+    @Test
     void testGetTrainingSessionsForDayMultipleSessions() {
         Timetable timetable = new Timetable();
 
@@ -86,8 +111,9 @@ public class TimetableTest {
         assertEquals(0, monday14.size());
     }
 
+    //Проверить, что за четверг в 20:00 вернулось два занятия
     @Test
-    void testGetTrainingSessionsForDayAndTimeIfSeveralSessionsSameTime() {
+    void testGetTrainingSessionsForDayAndTimeIfSeveralSessionsStartAtSameTime() {
         Timetable timetable = new Timetable();
 
         Coach coach = new Coach("Васильев", "Николай", "Сергеевич");
