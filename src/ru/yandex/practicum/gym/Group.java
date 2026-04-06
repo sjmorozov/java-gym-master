@@ -25,4 +25,14 @@ public class Group {
     public int getDuration() {
         return duration;
     }
+
+
+    @Override
+    public String toString() {
+        return "Group{\n" +
+                "title= '" + title + '\'' + "\n" +
+                ", age= " + age + "\n" +
+                ", duration= " + duration + "\n" +
+                '}';
+    }
 }
